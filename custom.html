@@ -22,8 +22,7 @@
             <div class="container">
                 <a class="navbar-brand" href="./index.html">Victor</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#topnavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnavbar">
                     <i class="fa-solid fa-bars color3"></i>
                 </button>
 
@@ -49,7 +48,8 @@
                             <i class="fa-solid fa-user color3"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./register.html"> <i class="fa-solid fa-lock color3"></i> &nbsp; Login
+                            <li><a class="dropdown-item" href="./register.html"> <i class="fa-solid fa-lock color3"></i>
+                                    &nbsp; Login
                                     / Sign Up</a></li>
                             <li><a class="dropdown-item" href="#"> <i class="fa-solid fa-heart color3"></i> &nbsp;
                                     Wishlists</a></li>
@@ -188,31 +188,32 @@
 
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <p>&copy; 2025 Tour Website. All rights reserved.</p>
+                    <p>&copy; 2025 Victor Tour Website. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-<!-- for icon -->
-<script src="./assests/js/icon.js"></script>
-<!-- bootstrap js -->
-<script src="./assests/js/bootstrap.bundle.min.js"></script>
-<script>
-    //js for if customer choose others then the input box will display for user that will asllow user to input
-    function toggleCustomDestination() {
-        let destinationSelect = document.getElementById("destination");
-        let customDestinationDiv = document.getElementById("customDestinationDiv");
-        let customDestinationInput = document.getElementById("customDestination");
+    <!-- for icon -->
+    <script src="./assests/js/icon.js"></script>
+    <!-- bootstrap js -->
+    <script src="./assests/js/bootstrap.bundle.min.js"></script>
+    <script>
+        //js for if customer choose others then the input box will display for user that will asllow user to input
+        function toggleCustomDestination() {
+            let destinationSelect = document.getElementById("destination");
+            let customDestinationDiv = document.getElementById("customDestinationDiv");
+            let customDestinationInput = document.getElementById("customDestination");
 
-        if (destinationSelect.value === "Other") {
-            customDestinationDiv.style.display = "block";
-            customDestinationInput.required = true;
-        } else {
-            customDestinationDiv.style.display = "none";
-            customDestinationInput.required = false;
+            if (destinationSelect.value === "Other") {
+                customDestinationDiv.style.display = "block";
+                customDestinationInput.required = true;
+            } else {
+                customDestinationDiv.style.display = "none";
+                customDestinationInput.required = false;
+            }
         }
-    }
-</script>
+    </script>
 </body>
+
 </html>

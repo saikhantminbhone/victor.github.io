@@ -24,8 +24,7 @@
             <div class="container">
                 <a class="navbar-brand" href="./index.html">Victor</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#topnavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnavbar">
                     <i class="fa-solid fa-bars color3"></i>
                 </button>
 
@@ -51,7 +50,8 @@
                             <i class="fa-solid fa-user color3"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./register.html"> <i class="fa-solid fa-lock color3"></i> &nbsp; Login
+                            <li><a class="dropdown-item" href="./register.html"> <i class="fa-solid fa-lock color3"></i>
+                                    &nbsp; Login
                                     / Sign Up</a></li>
                             <li><a class="dropdown-item" href="#"> <i class="fa-solid fa-heart color3"></i> &nbsp;
                                     Wishlists</a></li>
@@ -160,58 +160,58 @@
 
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <p>&copy; 2025 Tour Website. All rights reserved.</p>
+                    <p>&copy; 2025 Victor Tour Website. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 
-<!-- for icon -->
-<script src="./assests/js/icon.js"></script>
-<!-- bootstrap js -->
-<script src="./assests/js/bootstrap.bundle.min.js"></script>
-<!-- tour array -->
-<script src="./tour.js"></script>
+    <!-- for icon -->
+    <script src="./assests/js/icon.js"></script>
+    <!-- bootstrap js -->
+    <script src="./assests/js/bootstrap.bundle.min.js"></script>
+    <!-- tour array -->
+    <script src="./tour.js"></script>
 
-<!-- for payment -->
-<script src="https://js.stripe.com/acacia/stripe.js"></script>
-<!-- custom script -->
-<script>
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    function loadTourDetails() {
-        const page = getQueryParam("id");
-        const tour = tours.find(t => t.id === page);
-        console.log(tour);
-
-        if (tour) {
-            document.getElementById("tour-title").textContent = tour.title;
-            document.getElementById("tour-price").textContent = tour.price;
-            document.getElementById("tour-duration").textContent = tour.duration;
-            document.getElementById("tour-besttime").textContent = tour.besttime;
-
-            const locationList = document.getElementById("location-list");
-            locationList.innerHTML = ""; // Clear previous data
-            tour.locations.forEach(location => {
-                const li = document.createElement("li");
-                li.className = "list-group-item";
-                li.innerHTML = `<i class="fa fa-map-marker-alt icon"></i> ${location}`;
-                locationList.appendChild(li);
-            });
-
-            tour_amount = tour.price;
-
-        } else {
-            document.querySelector(".tour-details").innerHTML = "<h2 class='text-danger'>Tour Not Found!</h2>";
+    <!-- for payment -->
+    <script src="https://js.stripe.com/acacia/stripe.js"></script>
+    <!-- custom script -->
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
         }
-    }
+
+        function loadTourDetails() {
+            const page = getQueryParam("id");
+            const tour = tours.find(t => t.id === page);
+            console.log(tour);
+
+            if (tour) {
+                document.getElementById("tour-title").textContent = tour.title;
+                document.getElementById("tour-price").textContent = tour.price;
+                document.getElementById("tour-duration").textContent = tour.duration;
+                document.getElementById("tour-besttime").textContent = tour.besttime;
+
+                const locationList = document.getElementById("location-list");
+                locationList.innerHTML = ""; // Clear previous data
+                tour.locations.forEach(location => {
+                    const li = document.createElement("li");
+                    li.className = "list-group-item";
+                    li.innerHTML = `<i class="fa fa-map-marker-alt icon"></i> ${location}`;
+                    locationList.appendChild(li);
+                });
+
+                tour_amount = tour.price;
+
+            } else {
+                document.querySelector(".tour-details").innerHTML = "<h2 class='text-danger'>Tour Not Found!</h2>";
+            }
+        }
 
 
-    document.addEventListener("DOMContentLoaded", loadTourDetails);
-</script>
+        document.addEventListener("DOMContentLoaded", loadTourDetails);
+    </script>
 </body>
 
 </html>
