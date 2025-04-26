@@ -3794,7 +3794,7 @@ fieldset:disabled .btn {
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: var(--bs-nav-pills-link-active-color);
+  color:#2DAA9E;
   background-color: var(--bs-nav-pills-link-active-bg);
 }
 .nav-underline {
@@ -3815,7 +3815,7 @@ fieldset:disabled .btn {
 .nav-underline .nav-link.active,
 .nav-underline .show > .nav-link {
   font-weight: 700;
-  color: var(--bs-nav-underline-link-active-color);
+  color:#2DAA9E;
   border-bottom-color: currentcolor;
 }
 .nav-fill .nav-item,
@@ -3907,7 +3907,7 @@ fieldset:disabled .btn {
 }
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
-  color: var(--bs-navbar-active-color);
+  color: #2DAA9E;
 }
 .navbar-nav .dropdown-menu {
   position: static;

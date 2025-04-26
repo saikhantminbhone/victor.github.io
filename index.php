@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,65 +17,18 @@
 </head>
 
 <body>
-    <div class="header">
-        <nav class="navbar navbar-expand-lg shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="./index.html">Victor</a>
 
-                <!-- nav menu -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#topnavbar">
-                    <i class="fa-solid fa-bars color3"></i>
-                </button>
-
-                <!-- nav dropdown list -->
-                <div class="collapse navbar-collapse" id="topnavbar">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="./index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./package.html">Packages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./custom.html">Custom Tour</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./contact.html">Contact Us</a>
-                        </li>
-                    </ul>
-
-                    <div class="user-info dropdown">
-                        <a class="nav-link dropdown-toggle user-icon" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fa-solid fa-user color3"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./register.html"> <i class="fa-solid fa-lock color3"></i> &nbsp; Login
-                                    / Sign Up</a></li>
-                            <li><a class="dropdown-item" href="#"> <i class="fa-solid fa-heart color3"></i> &nbsp;
-                                    Wishlists</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#"> <i class="fa-solid fa-question color3"></i> &nbsp;
-                                    Help</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+<?php include './block/header.php';?>
 
     <div class="main">
         <div class="h-search-form text-center">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6">
-                        <form action="#">
+                        <form action="search.php" method="get">
                             <div class="input-group">
                                 <input type="search" name="search" class="form-control" placeholder="Search..">
-                                <button class="btn"><i class="fa-solid fa-search"></i></button>
+                                <button class="btn" type="submit"><i class="fa-solid fa-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -116,9 +70,9 @@
                 <div class="col-md-10 col-lg-8 text-center p-4 shadow-sm rounded login-banner">
                     <h4 class="fw-bold color3">Log in to manage bookings &amp; Victor Rewards</h4>
                     <p class="mt-2">Don't have an account yet?
-                        <a href="./register.html" class="text-decoration-none text-success fw-semibold">Sign up</a>
+                        <a href="./register.php" class="text-decoration-none text-success fw-semibold">Sign up</a>
                     </p>
-                    <a href="./login.html" class="btn btn-dark btn-lg w-20 mt-3">Log in</a>
+                    <a href="./login.php" class="btn btn-dark btn-lg w-20 mt-3">Log in</a>
                 </div>
             </div>
         </div>
@@ -138,9 +92,29 @@
         <div class="container my-5">
             <h2 class="text-center mb-4">Top Destinations</h2>
 
-            <div class="row g-4" id="topdestionation">
-                <!-- js will append here -->
-            </div>
+            <?php
+                include './config/database.php';
+                $query = "SELECT * FROM tours ORDER BY rating DESC LIMIT 8";
+                $connect = mysqli_query($conn, $query);
+                $tours = mysqli_fetch_all($connect, MYSQLI_ASSOC);
+               // print_r($tours);
+                ?>
+
+                <div class="row g-4" id="topdestionation">
+                    <?php foreach ($tours as $tour): 
+                        $firstWord = explode(" ", $tour['name'])[0];
+                    ?>
+                        <div class="col-md-6 col-lg-3">
+                            <a href="./pages/detail.php?page=<?= $tour['id'] ?>" class="text-decoration-none">
+                                <div class="topdestination">
+                                    <img src="<?= $tour['image'] ?>" alt="<?= htmlspecialchars($tour['name']) ?>">
+                                    <div class="topdestination-text"><?= htmlspecialchars($firstWord) ?></div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
         </div>
 
 
@@ -236,101 +210,47 @@
 
         </div>
     </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>About Us</h5>
-                    <p>Explore the world with us. Your adventure begins here! We offer the best tours at the most
-                        affordable prices.</p>
-                </div>
+    <?php include './block/footer.php';?>
 
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./packages.html">Packages</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
+    <!-- for icon -->
+    <script src="./assests/js/icon.js"></script>
+    <!-- bootstrap js -->
+    <script src="./assests/js/bootstrap.bundle.min.js"></script>
 
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fa fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <p>&copy; 2025 Victor Tour Website. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-<!-- for icon -->
-<script src="./assests/js/icon.js"></script>
-<!-- bootstrap js -->
-<script src="./assests/js/bootstrap.bundle.min.js"></script>
-<script src="./tour.js"></script>
-
-<script>
-    // Function to generate star ratings
-    function generateStars(rating) {
-        let starsHTML = "";
-        for (let i = 1; i <= 5; i++) {
-            if (i <= Math.floor(rating)) {
-                starsHTML += `<i class="fa fa-star"></i>`;
-            } else if (i - rating < 1) {
-                starsHTML += `<i class="fa fa-star-half"></i>`;
-            } else {
-                starsHTML += `<i class="fa fa-star-o"></i>`;
+    <script>
+        // Function to generate star ratings
+        function generateStars(rating) {
+            let starsHTML = "";
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    starsHTML += `<i class="fa fa-star"></i>`;
+                } else if (i - rating < 1) {
+                    starsHTML += `<i class="fa fa-star-half"></i>`;
+                } else {
+                    starsHTML += `<i class="fa fa-star-o"></i>`;
+                }
             }
+            return starsHTML;
         }
-        return starsHTML;
-    }
 
 
-    function createTourCards() {
-        const topdestionation = document.getElementById("topdestionation");
-        topdestionation.innerHTML = ""; // Clear existing content
+        function createTagList() {
 
-        tours.slice(0, 8).forEach(tour => {
-            var slicedTitle = tour.title.split(" ")[0]; // get the first word of the content only
-            const tourCard = document.createElement("div");
-            tourCard.className = "col-md-6 col-lg-3";
-            tourCard.innerHTML = `
-            <a href="./pages/detail.html?page=${tour.id}" class="text-decoration-none">
-                <div class="topdestination">
-                    <img src="${tour.image}" alt="${tour.title}">
-                    <div class="topdestination-text">${slicedTitle}</div>
-                </div>
-            </a>
-        `;
-            topdestionation.appendChild(tourCard);
-        });
-    }
+            const specialOffers = ["Special Offer", "New Arrival", "Discounted", "Limited Time", "Hot Deal"];
+            const tagTour = document.getElementById("tagtour");
+            tagTour.innerHTML = ""; // Clear previous content
 
-    function createTagList() {
+            tours.slice(0, 4).forEach(tour => {
+                const offerText = specialOffers[Math.floor(Math.random() * specialOffers
+                .length)]; // Random offer
+                const tourCard = document.createElement("div");
+                tourCard.className = "col-md-3";
+                tourCard.onclick = function () {
+                    event.preventDefault();
+                    window.location.href = `./pages/detail.php?page=${tour.id}`;
+                };
 
-        const specialOffers = ["Special Offer", "New Arrival", "Discounted", "Limited Time", "Hot Deal"];
-        const tagTour = document.getElementById("tagtour");
-        tagTour.innerHTML = ""; // Clear previous content
-
-        tours.slice(0, 4).forEach(tour => {
-            const offerText = specialOffers[Math.floor(Math.random() * specialOffers.length)]; // Random offer
-            const tourCard = document.createElement("div");
-            tourCard.className = "col-md-3";
-            tourCard.onclick = function () {
-                event.preventDefault();
-                window.location.href = `./pages/detail.html?page=${tour.id}`;
-            };
-
-            tourCard.innerHTML = `
+                tourCard.innerHTML = `
             <div class="tour text-decoration-none">
                 <img src="${tour.image}" alt="${tour.title}" class="tour-image">
                 <div class="special-offer">${offerText}</div>
@@ -346,13 +266,14 @@
             </div>
         `;
 
-            tagTour.appendChild(tourCard);
-        });
+                tagTour.appendChild(tourCard);
+            });
 
-    }
+        }
 
-    document.addEventListener("DOMContentLoaded", createTourCards);
-    document.addEventListener("DOMContentLoaded", createTagList);
-</script>
+        document.addEventListener("DOMContentLoaded", createTourCards);
+        document.addEventListener("DOMContentLoaded", createTagList);
+    </script>
 </body>
+
 </html>
